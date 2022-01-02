@@ -6,7 +6,7 @@ import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 
-import { requestRobots } from "../redux/robot/robot.actions";
+import { requestRobotsPending } from "../redux/robot/robot.actions";
 import { selectRobotItems } from "../redux/robot/robot.selectors";
 
 import "./App.css";
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onRequestRobots: robot => dispatch(requestRobots(robot)),
+  onRequestRobots: () => dispatch(requestRobotsPending()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
