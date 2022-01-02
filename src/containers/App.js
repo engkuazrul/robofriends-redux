@@ -7,10 +7,11 @@ import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 
 import { requestRobots } from "../redux/robot/robot.actions";
+import { selectRobotItems } from "../redux/robot/robot.selectors";
 
 import "./App.css";
 
-const App = ({robots, isPending, onRequestRobots}) => {
+const App = ({robots, isPending, error, onRequestRobots}) => {
 
   const [searchField, setSearchField] = useState('');
 
@@ -41,10 +42,10 @@ const App = ({robots, isPending, onRequestRobots}) => {
   );
 };
 
-const mapStateToProps = ({robot}) => ({
-  robots: robot.robots,
-  isPending: robot.isPending,
-  error: robot.error,
+const mapStateToProps = (state) => ({
+  robots: selectRobotItems(state),
+  isPending: state.robot.isPending,
+  error: state.robot.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({
